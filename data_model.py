@@ -36,5 +36,3 @@ df.rename(
 df[["Date_from", "Date_to"]] = df[["Date_from", "Date_to"]].apply(
     pd.to_datetime, format="%d.%m.%Y %H:%M"
 )
-
-print(df.columns)
