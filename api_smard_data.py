@@ -3,6 +3,9 @@ import pandas as pd
 from tqdm import tqdm
 import logging
 from typing import List
+from db_conn import get_connection
+
+conn = get_connection()
 
 # Configure logging
 logging.basicConfig(
@@ -63,10 +66,12 @@ def main():
 
     if data_frames:
         df_final = pd.concat(data_frames, ignore_index=True)
+        df_final.dropna(inplace=True)
         logging.info("Data collection complete.")
         # Save or return the final DataFrame as needed
-        df_final.to_csv("market_prices.csv", index=False)
-        logging.info("Data saved to market_prices.csv")
+        # df_final.to_csv("market_prices.csv", index=False)
+        df_final.to_sql("price_table", con=conn, if_exists="replace", index=False)
+        logging.info("Data saved to database.")
     else:
         logging.warning("No data collected. Exiting.")
 
