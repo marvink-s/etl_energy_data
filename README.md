@@ -7,5 +7,3 @@ This script fetches market price data for Germany and Luxembourg from the SMARD 
 ### Features
 - Retrieves a list of timestamps from the API.
 - Fetches time series data for each timestamp, including timestamps and market prices.
-- Combines all fetched data into a single pandas DataFrame.
-- Exports the final data to `market_prices.csv`.
